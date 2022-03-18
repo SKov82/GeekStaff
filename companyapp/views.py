@@ -8,7 +8,6 @@ from django.views.generic import CreateView, DetailView, ListView, TemplateView,
 
 from .models import Company, Job
 from applicantapp.models import Resume
-from icecream import ic
 
 
 class ProfileView(LoginRequiredMixin, TemplateView):
@@ -77,7 +76,7 @@ class JobListView(LoginRequiredMixin, ListView):
 
 class ResumeListHR(LoginRequiredMixin, ListView):
     """
-    Список резюме c пагинацие по 25 штук
+    Список резюме c пагинацией по 25 штук
     """
     model = Resume
     paginate_by = 25

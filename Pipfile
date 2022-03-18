@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+certifi = "==2020.12.5"
+chardet = "==4.0.0"
+django = "==3.1.7"
+django-debug-toolbar = "==3.2"
+django-debug-toolbar-template-profiler = "==2.0.2"
+pillow = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
