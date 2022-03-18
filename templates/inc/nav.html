@@ -1,0 +1,50 @@
+{% load static %}
+
+<!-- Navigation bar -->
+<nav class="navbar">
+    <div class="container">
+
+        <!-- Logo -->
+        <div class="pull-left">
+            <a class="navbar-toggle" href="#" data-toggle="offcanvas"><i class="ti-menu"></i></a>
+
+            <div class="logo-wrapper">
+                <a class="logo" href="{% url 'mainapp:index' %}"><img src="{% static 'img/logo1.png' %}" alt="logo"></a>
+            </div>
+        </div>
+        <!-- END Logo -->
+
+        <!-- User account -->
+        <div class="pull-right">
+            <div class="dropdown user-account">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
+                    <img src="{% static 'img/logo-ava.jpg' %}" alt="avatar">
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    {% if user.is_authenticated %}
+                        <li style="padding-left:8px"> {{ user.email }} </li>
+                        {% if user.is_superuser %} <li><a href="/admin/">Админка</a></li> {% endif %}
+                        {% if user.is_staff %} <li><a href="#">Модерировать</a></li> {% endif %}
+                        {% if user.role == 'HR' %} 
+                            <li><a href="{% url 'companyapp:profile' user.pk %}">Личный кабинет</a></li> 
+                        {% endif %}
+                        {% if user.role == 'REC' and not user.is_staff %} 
+                            <li><a href="{% url 'applicantapp:profile' user.pk %}">Личный кабинет</a></li> 
+                        {% endif %}
+                        <li><a href="{% url 'authapp:logout' %}">Выйти</a></li>
+                    {% else %}
+                        <li><a href="{% url 'authapp:login' %}">Войти</a></li>
+                        <li><a href="{% url 'authapp:signup' %}">Регистрация</a></li>
+                        <li><a href="{% url 'authapp:forget-pass' %}">Забыли пароль?</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+        <!-- END User account -->
+
+        <!-- Navigation menu -->
+        {% include 'inc/nav-menu.html' %}
+        <!-- END Navigation menu -->
+    </div>
+</nav>

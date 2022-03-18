@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+  <body class="login-page">
+    <main>
+      <div class="login-block">
+        <a class="logo" href="{% url 'mainapp:index' %}"><img src="{% static 'img/logo1.png' %}" alt="logo"></a>
+        <h1>Регистрация</h1>
+
+        <form method="POST"> {% csrf_token %}
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="ti-user"></i></span>
+              <select class="form-control" name="role" id="id_role" required>
+                <option value="HR">Работодатель</option>
+                <option value="REC" selected>Соискатель</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="ti-email"></i></span>
+              <input type="email" class="form-control" placeholder="Ваш email" name="email" maxlength="64" required id="id_email">
+            </div>
+          </div>
+
+          {{ form.errors.email }}
+
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="ti-unlock"></i></span>
+              <input type="password" class="form-control" placeholder="Выберите пароль" name="password1" maxlength="128" required id="id_password1"
+              title="Пароль не должен быть слишком похож на ваш логин/email.
+Ваш пароль должен содержать как минимум 8 символов.
+Пароль не должен быть распространенным среди пользователей.
+Пароль не может состоять только из цифр.">
+              <span class="input-group-addon"><i class="ti-eye"></i></span>
+            </div>
+          </div>
+          
+          {{ form.errors.password2 }}
+          
+          <div class="form-group">
+            <div class="input-group">
+              <span class="input-group-addon"><i class="ti-key"></i></span>
+              <input type="password" class="form-control" placeholder="Подтвердите пароль" name="password2" maxlength="128" required id="id_password2">
+              <span class="input-group-addon"><i class="ti-eye"></i></span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-block" type="submit">Зарегистрировать</button>
+
+          <div class="agree checkbox">
+            <input type="checkbox" name="agree" id="agree" required>
+            <label for="agree">Согласен на публикацию персональных данных</label>
+          </div>
+        </form>
+      </div>
+
+      <div class="login-links">
+        <p class="text-center">Уже есть аккаунт? <a class="txt-brand" href="{% url 'authapp:login' %}">Войти</a></p>
+      </div>
+    </main>
+
+    <script src="{% static 'js/auth.js' %}"></script>
+  </body>
+{% endblock %}

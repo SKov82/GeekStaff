@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Main container -->
+<main>
+
+    <!-- Recent jobs -->
+    {% block jobs %}
+        <!-- include 'inc/index-jobs.html' -->
+    {% endblock %}
+    <!-- END Recent jobs -->
+
+    <!-- Companies -->
+    {% block partners %}
+        {% include 'inc/index-partners.html' %}
+    {% endblock %}
+    <!-- END Companies -->
+
+    <!-- Newsletter -->
+    <section class="bg-img text-center subscribe">
+        <div class="container">
+            <h2><strong>Подписка</strong></h2>
+            <h6 class="font-alt">Получайте лучшие предложения о работе еженедельно.</h6>
+            <br /><br />
+            <form class="form-subscribe" action="#">
+                <div class="input-group">
+                    <input type="text" class="form-control input-lg" placeholder="Ваш e-mail" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-success btn-lg" type="submit">Подписаться</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- END Newsletter -->
+
+    <!-- Recent news -->
+    {% block news %}
+        {% include 'inc/index-news.html' %}
+    {% endblock %}
+    <!-- END News -->
+
+</main>
+<!-- END Main container -->
+
+{% endblock %}

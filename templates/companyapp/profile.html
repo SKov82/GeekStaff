@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <header class="page-header bg-img size-lg">
+        <div class="container no-shadow">
+                <!-- <li role="presentation" class="active"><a href="{% url 'companyapp:card' user.company.pk %}">Карточка компании</a></li> -->
+            <div class="my-tabs">
+                <input id="tab1" type="radio" name="tabs" checked>
+                <label for="tab1">Карточка компании</label>
+                <input id="tab2" type="radio" name="tabs">
+                <label for="tab2">Список вакансий</label>
+                <input id="tab3" type="radio" name="tabs">
+                <label for="tab3">Избранное</label>
+                <input id="tab4" type="radio" name="tabs">
+                <label for="tab4">Отклики</label>
+            </div>
+
+            <section id="content1">
+                <div class="header-detail">
+                    {% if object.logo %}
+                    <img class="logo" src="{{ object.logo.url }}" alt="">
+                    {% else %}
+                    <img class="logo" src="{% static 'img/logo-default.png' %}" alt="">
+                    {% endif %}
+                    <div class="hgroup">
+                        <h1>{{ object.name }}</h1>
+                        <h3>{{ object.headline }}</h3>
+                    </div>
+                    <hr>
+                    <p class="lead">{{ object.short_description }}</p>
+                
+                    <ul class="details cols-3">
+                        <li class="text-left">
+                            <i class="fa fa-map-marker"></i>
+                            <span>{{ object.location }}</span>
+                        </li>
+                        <li class="text-center">
+                            <i class="fa fa-globe"></i>
+                            <a href="http://{{ object.link }}/">{{ object.link }}</a>
+                        </li>
+                        <li class="text-right">
+                            <i class="fa fa-eye"></i>
+                            <span>{{ object.views_count }}</span>
+                        </li>
+                    </ul>
+                
+                    {% if user.pk == object.user.pk %}
+                    <div class="button-group">
+                        <div class="action-buttons">
+                            <a class="btn btn-primary" href="{% url 'companyapp:edit' object.pk %}">Редактировать карточку компании</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                </div>
+            </section>
+            <section id="content2"></section>
+            <section id="content3"></section>
+            <section id="content4"></section>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+    <!-- Main container -->
+    <main>
+        <section class="no-padding-top bg-alt">
+            <div class="container">
+                <div class="row item-blocks-connected">
+
+                    <!-- Job detail -->
+                    <!-- <div class="col-xs-12">
+                        <div class="item-block">
+                            <header>
+                                <a href="#"><img src="/img/logo-google.jpg" alt=""></a>
+                                <div class="hgroup">
+                                    <h4><a href="#">Мидл JavaScript разраб</a></h4>
+                                    <h5><a href="#">Google</a></h5>
+                                </div>
+                                <div class="header-meta">
+                                    <span class="location">Калифорния</span>
+                                    <time datetime="09.03.2021 20:00">8 часов назад</time>
+                                </div>
+                            </header>
+    
+                            <footer>
+                                <p class="status"><strong>Статус:</strong> Опубликована</p>
+    
+                                <div class="action-btn">
+                                    <a class="btn btn-xs btn-gray" href="#">Редактировать</a>
+                                    <a class="btn btn-xs btn-success" href="#">Закрыть</a>
+                                    <a class="btn btn-xs btn-danger" href="#">Удалить</a>
+                                </div>
+                            </footer>
+                        </div>
+                    </div> -->
+                    <!-- END Job detail -->
+    
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- END Main container -->
+{% endblock %}
+
+{% block footer %} {% endblock %}

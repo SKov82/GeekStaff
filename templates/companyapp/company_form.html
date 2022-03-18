@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    {% if user.pk == object.user.pk %}
+    <form method="POST" enctype="multipart/form-data"> {% csrf_token %}
+         
+        <!-- Page header -->
+        <header class="page-header alt">
+            <div class="container page-name">
+                <h1 class="text-center">Карточка компании</h1>
+                <p class="lead text-center">Заполните анкету Вашей компании и опубликуйте её</p>
+            </div>
+    
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="row">
+    
+                            <div class="col-xs-12 col-sm-4 col-lg-2">
+                                <div class="form-group">
+                                    <input type="file" name="logo" accept="image/*" id="id_logo" class="dropify"
+                                        data-default-file="{% if object.logo %} {{object.logo.url}} {% else %} {% static 'img/logo-default.png' %} {% endif %}">
+                                    <span class="help-block">Логотип</span>                                        
+                                </div>
+                                {{ form.errors.logo }}
+                            </div>
+    
+                            <div class="col-xs-12 col-sm-8 col-lg-10">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control input-lg" value="{{ object.name }}" maxlength="255"
+                                        required id="id_name" placeholder="Наименование компании">
+                                </div>
+                                {{ form.errors.name }}
+                                <div class="form-group">
+                                    <input type="text" name="headline" value="{{ object.headline }}" maxlength="255" id="id_headline"
+                                        class="form-control" placeholder="Заголовок, слоган, кредо...">
+                                </div>
+                                {{ form.errors.headline }}
+                                <div class="form-group">
+                                    <textarea name="short_description" maxlength="255" required id="id_short_description" class="form-control"
+                                        rows="3" placeholder="Краткое описание">{{ object.short_description }}</textarea>
+                                </div>
+                                {{ form.errors.short_description }}
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="col-xs-12">
+                        <div class="row text-center">
+    
+                            <div class="form-group col-xs-12 col-sm-6 col-md-6">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><i class="fa fa-map-marker"></i></span>
+                                    <input type="text" name="location" value="{{ object.location }}" maxlength="255" required
+                                        id="id_location" class="form-control" placeholder="Местонахождение">
+                                </div>
+                                {{ form.errors.location }}
+                            </div>
+    
+                            <div class="form-group col-xs-12 col-sm-6 col-md-6 text-right">
+                                <div class="input-group input-group-sm">
+                                    <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+                                    <input type="text" name="link" value="{{ object.link }}" maxlength="255" id="id_link"
+                                        class="form-control" placeholder="Адрес сайта / соцсеть">
+                                </div>
+                                {{ form.errors.link }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- END Page header -->
+    
+        <!-- Main container -->
+        <main>
+            <!-- Company detail -->
+            <section class=" bg-alt">
+                <div class="container">
+                    <header class="section-header">
+                        <h2>Детали Компании</h2>
+                        <p>Расскажите о Вашей компании, её ценностях, преимуществах работы у Вас</p>
+                    </header>
+                    <textarea name="detail" id="id_detail" class="summernote-editor form-control" rows="7"
+                        placeholder="Подробное описание">{{ object.detail }}</textarea>
+                    {{ form.errors.detail }}
+                </div>
+            </section>
+            <!-- END Company detail -->
+            
+            <!-- Moder Comment -->
+            {% if object.status == '0' %}
+                <section>
+                    <div class="container">
+                        <label for="id_moder_comment" id="moder_comment">Замечания модератора:</label>
+                        <textarea name="moder_comment" rows="3" disabled id="id_moder_comment"
+                            class="form-control">{{ object.moder_comment }}</textarea>
+                        {{ form.errors.moder_comment }}
+                    </div>
+                </section>
+            {% endif %}
+            <!-- END Moder Comment -->
+
+            <!-- Submit -->
+            <section>
+                <div class="container">
+                    <header class="section-header">
+                        <h2>Сохранить</h2>
+                        <p>Пожалуйста, проверьте указанную Вами информацию и нажмите на кнопку "Опубликовать".
+                        После проверки модератором, карточка Вашей компании станет доступна другим пользователям.</p>
+                        <p>Или сохраните как "Черновик", чтобы позже вернуться к редактированию. Черновики не видны
+                        другим пользователям.</p>
+                        <br>
+                        {{ form.non_field_errors }}
+                        <br>
+                        <div id="id_status">
+                            <button class="btn btn-primary" name="status" value="2" type="submit">Опубликовать</button>
+                            <button class="btn btn-success" name="status" value="4" type="submit">Сохранить Черновик</button>
+                        </div>
+                    </header>
+                </div>
+            </section>
+            <!-- END Submit -->
+        </main>
+        <!-- END Main container -->
+    </form>
+    {% endif %}
+{% endblock %}
+
+{% block content %} {% endblock %}
+
+{% block footer %} {% endblock %}

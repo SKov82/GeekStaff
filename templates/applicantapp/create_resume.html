@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    {% block header %}
+        {% include 'inc/nav.html' %}
+    {% endblock %}
+
+    {% block nav %}
+        {#                {% include 'inc/nav.html' %}#}
+    {% endblock %}
+
+    {% block content %}
+        <div class="container resume-container">
+
+            <form method="post" id="form_for_post" class="form-resume" enctype="multipart/form-data"> {% csrf_token %}
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        <input class="form-control" placeholder="Заголовок" name="headline" maxlength="255" required
+                               id="id_headline">
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i></span>
+                            <input class="form-control" placeholder="Имя" name="first_name" maxlength="255" required
+                                   id="id_first_name">
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i></span>
+                            <input class="form-control" placeholder="Фамилия" name="surname" maxlength="255" required
+                                   id="id_surname">
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        <input type="number" min="0" class="form-control" placeholder="Желаемая заработная плата"
+                               name="salary" maxlength="255"
+                               id="id_salary">
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        <input type="date" class="form-control" placeholder="Дата рождения" name="date_of_birth"
+                               required
+                               id="id_date_of_birth">
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        <div class="wrapper">
+                        <span class="form-control middle">
+                            <span class=""> Резюме активно  </span>
+                            <input type="checkbox" class="" placeholder="Резюме активно" name="is_active"
+                                   id="id_is_active">
+                        </span>
+                        </div>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i></span>
+                            <input class="form-control" placeholder="Город" name="city" maxlength="255"
+                                   id="id_city">
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="">Фото:</i></span>
+
+                            <input type="file" class="form-control middle foto-file" id="id_user_pic" name="user_pic"
+                                   accept="image/*">
+
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        <input class="form-control" placeholder="Ссылка на профиль в соц. сетях или сайт" name="links"
+                               maxlength="255" id="id_links">
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="">Занятость:</i></span>
+                            <select class="form-control" name="employment" id="id_employment">
+                                <option value="FT" selected>Полная занятость</option>
+                                <option value="PT">Частичная занятость</option>
+                                <option value="PW">Проектная работа</option>
+                                <option value="VL">Волонтерство</option>
+                                <option value="PT">Стажировка</option>
+                            </select>
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i> Образование:</span>
+                            <select class="form-control" name="education_type" id="id_education_type">
+                                <option value="SECONDARY" selected>Среднее</option>
+                                <option value="SPECIAL_SECONDARY">Среднее специальное</option>
+                                <option value="UNFINISHED_HIGHER">Неоконченное высшее</option>
+                                <option value="HIGHER">Высшее</option>
+                                <option value="BACHELOR">Бакалавр</option>
+                                <option value="MASTER">Магистр</option>
+                                <option value="CANDIDATE">Кандидат наук</option>
+                                <option value="DOCTOR">Доктор наук</option>
+                            </select>
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i> График работы:</span>
+                        <select class="form-control" name="work_schedule" id="id_work_schedule">
+                            <option value="FD" selected>Полный день</option>
+                            <option value="SSCH">Сменный график</option>
+                            <option value="FSCH">Гибкий график</option>
+                            <option value="RW">Удаленная работа</option>
+                            <option value="RBW">Вахтовый метод</option>
+                        </select>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        <textarea rows="4" id="id_about_me" class="form-control" placeholder="Обо мне" name="about_me">
+                        </textarea>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        <input class="form-control" placeholder="Ключевые наваки" maxlength="255" name="key_skills"
+                               id="id_key_skills">
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        <input class="form-control" placeholder="Телефон" maxlength="20" name="phone"
+                               id="id_phone">
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div>{% if messages %}
+                    {% for message in messages %}
+                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-lg-12" style="text-align: center;">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i></span>
+                            <button type="submit" class="btn btn-gray btn-save" name="submit_btn_val" value="1">
+                                Создать
+                            </button>
+                            <button type="submit" class="btn btn-gray btn-save" name="submit_btn_val" value="2">
+                                Черновик
+                            </button>
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    {% endblock %}
+
+    {% block js %} {{ block.super }}
+        <script defer src="{% static 'js/create_resume.js' %}"></script>
+    {% endblock %}
+
+{% endblock %}

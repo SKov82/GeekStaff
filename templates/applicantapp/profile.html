@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <header class="page-header applicant bg-img size-lg">
+        <div class="container no-shadow">
+            <h1 class="text-center">ЛК Соискателя № {{ user.pk }} - {{ user.email }}</h1>
+            <p class="lead text-center">Список резюме | Избранное | Отклики</p>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+    <!-- Main container -->
+    <main>
+        <section class="no-padding-top bg-alt">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-xs-12 text-right">
+                        <br>
+                        <a class="btn btn-primary btn-sm" href="{% url 'applicantapp:createresume'%}">Добавить резюме</a>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="item-block">
+                            {% include 'applicantapp/resume_list.html' %}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+    </main>
+
+    <!-- END Main container -->
+{% endblock %}
+
+
+{% block footer %}
+{% endblock %}

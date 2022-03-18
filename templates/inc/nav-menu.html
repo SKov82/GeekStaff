@@ -1,0 +1,37 @@
+<ul class="nav-menu">
+    <li>
+        <a href="#">Вакансии</a>
+        <ul>
+            <li><a href="#">Поиск вакансий</a></li>
+            <li><a href="#">Подробная вакансия</a></li>
+            <li><a href="#">Разместить вакансию</a></li>
+            <li><a href="{% url 'companyapp:job-list'%}">Управление вакансиями</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">Резюме</a>
+        <ul>
+            <li><a href="#">Поиск резюме</a></li>
+            <li><a href="{% url 'companyapp:resume-list'%}">Список резюме</a></li>
+            <li><a href="{% url 'applicantapp:createresume'%}">Создать резюме</a></li>
+            <li><a href="{% url 'applicantapp:resume-list'%}">Управление резюме</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">IT-Компании</a>
+        <ul>
+            <li><a href="#">Найти IT-компанию</a></li>
+            <li><a href="#">Описание компании</a></li>
+            <li><a href="#">Создать компанию</a></li>
+            <li><a href="#">Управление компаниями</a></li>
+        </ul>
+    </li>
+    <li>
+        <a href="#">Информация</a>
+        <ul>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Контакты</a></li>
+            <li><a href="#">F.A.Q.</a></li>
+        </ul>
+    </li>
+</ul>

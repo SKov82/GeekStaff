@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    {% block header %}
+        {% include 'inc/nav.html' %}
+    {% endblock %}
+
+    {% block nav %}
+        {#                {% include 'inc/nav.html' %}#}
+    {% endblock %}
+
+    {% block content %}
+        <div class="container resume-container">
+            <form method="post" class="form-resume" enctype="multipart/form-data"> {% csrf_token %}
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        {{ form.headline }}
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i></span>
+                            {{ form.first_name }}
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i></span>
+                            {{ form.surname }}
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        {% if form.salary.value %}
+                        {{ form.salary }}
+                        {% else %}
+                        <input type="number" min="0" class="form-control" placeholder="Желаемая заработная плата"
+                               name="salary" maxlength="255"
+                               id="id_salary">
+                        {% endif %}
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        {{ form.date_of_birth }}
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        <div class="wrapper">
+                        <span class="form-control middle">
+                            <span class=""> Резюме активно  </span>
+                            <input type="checkbox" class="" placeholder="Резюме активно" name="is_active"
+                                   id="id_is_active">
+                        </span>
+                        </div>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i></span>
+                            {{ form.city }}
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="">Фото:</i></span>
+                            {% if form.user_pic.value %}
+                            {{ form.user_pic }}
+                            {% else %}
+                            <input type="file" class="form-control middle foto-file" id="id_user_pic" name="user_pic" accept="image/*">
+                            {% endif %}
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        {% if form.links.value %}
+                        {{ form.links }}
+                        {% else %}
+                        <input class="form-control" placeholder="Ссылка на профиль в соц. сетях или сайт" name="links"
+                               maxlength="255" id="id_links">
+                        {% endif %}
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="">Занятость:</i></span>
+                            {{ form.employment }}
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i> Образование:</span>
+                            {{ form.education_type }}
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i> График работы:</span>
+                        {{ form.work_schedule }}
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        {% if form.about_me.value %}
+                        {{ form.about_me }}
+                        {% else %}
+                        <textarea rows="4" id="id_about_me" class="form-control" placeholder="Обо мне" name="about_me">
+                        </textarea>
+                        {% endif %}
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        {% if form.key_skills.value %}
+                        {{ form.key_skills }}
+                        {% else %}
+                        <input class="form-control" placeholder="Ключевые наваки" maxlength="255" name="key_skills"
+                               id="id_key_skills">
+                        {% endif %}
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        {{ form.phone }}
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i></span>
+                            {% if form.created_at.value %}
+                            {{ form.created_at }}
+                            {% else %}
+                            <span class="form-control middle" id="id_created_at"> Дата создания    </span>
+                            {% endif %}
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i></span>
+                            {% if form.updated_at.value %}
+                            {{ form.updated_at }}
+                            {% else %}
+                            <span class="form-control middle" id="id_updated_at"> Дата обновления   </span>
+                            {% endif %}
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class=""></i></span>
+                        {{ form.views_count }}
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+
+                </div>
+
+                <div>{% if messages %}
+                    {% for message in messages %}
+                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                </div>
+                <input type="submit" class="btn-gray btn-save" value="Сохранить">
+            </form>
+        </div>
+    {% endblock %}
+
+{% endblock %}

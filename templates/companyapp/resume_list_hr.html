@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block header %}
+    <header class="page-header bg-img size-lg">
+        <div class="container no-shadow">
+            <h1 class="text-center"> Список резюме</h1>
+        </div>
+    </header>
+{% endblock %}
+
+{% block content %}
+    <!-- Main container -->
+    <main>
+        <section class="no-padding-top bg-alt">
+            <div class="container">
+                <div class="row item-blocks-connected">
+
+                <!-- Resume list block -->
+                    {% for resume in object_list %}
+
+                        <div class="col-xs-12">
+                            <div class="item-block">
+                                <header>
+                                    <div class="hgroup">
+                                        <h4><a href="{% url 'companyapp:resume-list-detail' pk=resume.id%}">{{ resume.headline }}</a></h4>
+                                    </div>
+
+                                </header>
+
+                                <footer>
+                                    <div class="header-meta">
+                                        <span class="location">{{ resume.city }}</span>
+                                        <span>Дата опубликования - {{ resume.created_at }}</span><br>
+                                        <span>Дата обновления - {{ resume.updated_at }}</span><br>
+                                    </div>
+                                </footer>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+
+                 <!-- END Resume list block -->
+
+                <!-- Pagination detail -->
+                    {% if is_paginated %}
+                        <div class="pagination">
+                            <span class="page-links">
+                                {% if page_obj.has_previous %}
+                                    <a href="/company/resume-list/?page={{ page_obj.previous_page_number }}">previous</a>
+                                {% endif %}
+                                <span class="page-current">
+                                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                                </span>
+                                {% if page_obj.has_next %}
+                                    <a href="/company/resume-list/?page={{ page_obj.next_page_number }}">next</a>
+                                {% endif %}
+                            </span>
+                        </div>
+                    {% endif %}
+                <!-- END Pagination detail  -->
+
+
+
+
+
+
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- END Main container -->
+{% endblock %}
+
+{% block footer %} {% endblock %}
+
+{#<img src="{% static 'img/logo-google.jpg' %}" alt="" >#}

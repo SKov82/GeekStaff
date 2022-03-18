@@ -1,0 +1,17 @@
+{% for resume in resume_list %}
+   <div class="col-xs-12">
+      <div class="item-block">
+            <div class="hgroup">
+                <h5>{{ resume.headline }} </h5>
+                <h4>{{ resume.surname }} {{ resume.first_name }} </h4>
+
+            </div>
+         <div class="header-meta">
+            <span class="location"><i class="fa fa-map-marker"></i> {{ resume.city }} </span><br>
+            <span class="rate">{{ resume.salary }} руб. </span>
+             <a href="{% url 'applicantapp:update_resume' resume.pk %}">Редактировать</a>
+         </div>
+
+      </div>
+   </div>
+{% endfor %}

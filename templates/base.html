@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="IT-Рекрутинг! Разместите ваши вакансию или резюме.">
+        <meta name="keywords" content="">
+
+        <title> {% firstof title_name 'GeekStaff' %} </title>
+
+        {% block css %}
+            <!-- Favicon -->
+            <link rel="shortcut icon" type="image/x-icon" href="{% static 'img/favicon.png' %}">
+
+            <!-- Fonts -->
+            <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Oswald:100,300,400,500,600,800'>
+            <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700,800'>
+            <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Montserrat:400,700'>
+
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+            <!-- Styles -->
+            <link rel="stylesheet" href="{% static 'css/app.min.css' %}">
+            <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        {% endblock %}
+    </head>
+
+    {% block body %}      
+        <body class="nav-on-header">
+            
+            {% block nav %}
+                {% include 'inc/nav.html' %}
+            {% endblock %}
+
+            {% block header %}
+                {% include 'inc/header.html' %}
+            {% endblock %}
+
+            {% block content %} {% endblock %}
+
+            {% block footer %}
+                {% include 'inc/footer.html' %}
+            {% endblock %}
+
+            <!-- Back to top button -->
+            <div id="scroll-up"><i class="ti-angle-up"></i></div>
+
+            {% block js %}
+                <script defer src="{% static 'js/script.js' %}"></script>
+            {% endblock %}
+        </body>
+    {% endblock %}
+</html>

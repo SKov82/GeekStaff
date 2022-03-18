@@ -1,0 +1,60 @@
+<section id="open-positions" class="bg-alt">
+    <div class="container">
+        <header class="section-header">
+            <h2>Открытые вакансии</h2>
+        </header>
+
+        <div class="row item-blocks-connected">
+            {% for job in jobs %}
+            <!-- Job item -->
+                {% if job.status == '3' %}
+                    <div class="col-xs-12">
+                        <a class="item-block" href="{% url 'companyapp:edit-job' job.pk %}">
+                            <header>
+                                {% if job.company.logo %}
+                                <img src="{{ job.company.logo.url }}" alt="">
+                                {% endif %}
+                                <div class="hgroup">
+                                    <h4>{{ job }}</h4>
+                                    <h5>{{ job.company.name }}
+                                        <span class="label label-success">{{ job.get_employment_display }}</span>
+                                        <span class="label label-success">{{ job.get_work_schedule_display }}</span>
+                                    </h5>
+                                </div>
+                                <time datetime="">{{ job.updated_at }}</time><br>
+                                <time datetime="">{{ job.updated_at|timesince }}&nbsp;назад</time>
+                            </header>
+
+                            <div class="item-body">
+                                <p>{{ job.short_description }}</p>
+                            </div>
+
+                            <footer>
+                                <ul class="details cols-3">
+                                    <li class="text-left">
+                                        <i class="fa fa-map-marker"></i>
+                                        <span>{{ job.city }}</span>
+                                    </li>
+
+                                    <li class="text-center">
+                                        <span>Опыт:&nbsp;{{ job.get_experience_display }}</span>
+                                    </li>
+
+                                    <li class="text-right">
+                                        <i class="fa fa-money"></i>&nbsp;
+                                        {% if job.salary %}
+                                        <span>{{ job.salary }} &nbsp;руб</span>
+                                        {% else %}
+                                        <span>З/п не указана</span>
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                            </footer>
+                        </a>
+                    </div>
+                {% endif %}
+            <!-- END Job item -->
+            {% endfor %}
+        </div>
+    </div>
+</section>

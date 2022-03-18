@@ -1,0 +1,203 @@
+{#<h1>{{ object.headline }}</h1>#}
+{#<p>{{ object.content }}</p>#}
+{#<p>Reporter: {{ object.reporter }}</p>#}
+{#<p>Published: {{ object.pub_date|date }}</p>#}
+{#<p>Date: {{ now|date }}</p>#}
+
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    {% block header %}
+        {% include 'inc/nav.html' %}
+    {% endblock %}
+
+    {% block nav %}
+        {#                {% include 'inc/nav.html' %}#}
+    {% endblock %}
+
+    {% block content %}
+        <div class="container resume-container">
+
+                <div class="form-group">
+                    <div class="input-group" style="text-align: center">
+                        <span class="input-group-addon"><i class=""></i></span>
+{#                        <span type="number" min="0" class="form-control form_control_centr_heigh"#}
+{#                              id="id_salary">{{ object.salary }}</span>#}
+                            <img src="/media/{{ object.user_pic }}" alt="Photo" height="150">
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="">Название</i></span>
+                        <span class="form-control form_control_centr_heigh"
+                              id="id_headline"> {{ object.headline }}</span>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="">Имя</i></span>
+                            <span class="form-control form_control_centr_heigh"
+                                  id="id_first_name"> {{ object.first_name }}</span>
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="">Фамилия</i></span>
+                            <span class="form-control form_control_centr_heigh"
+                                   id="id_surname">{{ object.surname  }}</span>
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">Желаемая заработная плата<i class=""></i></span>
+                        <span type="number" min="0" class="form-control form_control_centr_heigh"
+                              id="id_salary">{{ object.salary }}</span>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="">Дата рождения</i></span>
+                        <span type="date" class="form-control form_control_centr_heigh"
+                               id="id_date_of_birth">{{ object.date_of_birth }} </span>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+{##}
+{#                <div class="form-group">#}
+{#                    <div class="input-group">#}
+{#                        <span class="input-group-addon"><i class=""></i></span>#}
+{#                        <div class="wrapper">#}
+{#                        <span class="form-control middle">#}
+{#                            <span class=""> Резюме активно  </span>#}
+{#                            <input type="checkbox" class="" placeholder="Резюме активно" name="is_active"#}
+{#                                   id="id_is_active">#}
+{#                        </span>#}
+{#                        </div>#}
+{#                        <span class="input-group-addon"><i class=""></i></span>#}
+{#                    </div>#}
+{#                </div>#}
+{##}
+                <div class="row">
+                    <div class="form-group col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""> Город </i></span>
+                            <span class="form-control form_control_centr_heigh"
+                                  id="id_city"> {{ object.city }}</span>
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+
+{#                    <div class="form-group col-lg-6">#}
+{#                        <div class="input-group">#}
+{#                            <span class="input-group-addon"><i class="">Фото:</i></span>#}
+{##}
+{#                            <input type="file" class="form-control middle foto-file" id="id_user_pic" name="user_pic"#}
+{#                                   accept="image/*">#}
+{##}
+{#                            <span class="input-group-addon"><i class=""></i></span>#}
+{#                        </div>#}
+{#                    </div>#}
+                </div>
+{##}
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon "><i class="">Ссылка на профиль в соц. сетях или сайт</i></span>
+                        <span class="form-control form_control_centr_heigh"
+                               id="id_links"> {{ object.links }}</span>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                 <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="">Занятость</i></span>
+                        <span class="form-control form_control_centr_heigh"
+                               id="id_employment"> {{ object.employment}}</span>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="">Образование</i></span>
+                        <span class="form-control form_control_centr_heigh"
+                               id="id_education_type"> {{ object.education_type}}</span>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="">График работы:</i></span>
+                        <span class="form-control form_control_centr_heigh"
+                               id="id_work_schedule"> {{ object.work_schedule}}</span>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="">Обо мне</i></span>
+{#                        <textarea  rows="1" id="id_about_me"  placeholder="Обо мне" name="about_me" readonly>#}
+{#                            {{ object.about_me }}#}
+{#                        </textarea>#}
+                        <span class="form-control form_control_centr_heigh"> {{ object.about_me }}</span>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="">Телефон</i></span>
+                        <span class="form-control form_control_centr_heigh"
+                              id="id_phone">{{ object.phone}}</span>
+                        <span class="input-group-addon"><i class=""></i></span>
+                    </div>
+                </div>
+
+                <div>{% if messages %}
+                    {% for message in messages %}
+                        <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-lg-12" style="text-align: center;">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class=""></i></span>
+{#                            <button type="submit" class="btn btn-gray btn-save" name="submit_btn_val" value="1">#}
+{#                                Откликнуться#}
+{#                            </button>#}
+                            <button class="btn btn-gray">Пригласить</button>
+                            <a href="{{request.META.HTTP_REFERER|escape}}" class="btn btn-gray"> Назад </a>
+                            <span class="input-group-addon"><i class=""></i></span>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+    {% endblock %}
+
+    {% block js %} {{ block.super }}
+        <script defer src="{% static 'js/create_resume.js' %}"></script>
+    {% endblock %}
+
+{% endblock %}
+

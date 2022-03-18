@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+    {% block header %}
+        {% include 'inc/nav.html' %}
+    {% endblock %}
+
+    {% block nav %}
+        {#                {% include 'inc/nav.html' %}#}
+    {% endblock %}
+
+    {% block content %}
+        <div class="container">
+            <div class="col-xs-12 text-right">
+                <br>
+                <a class="btn btn-primary btn-sm" href="{% url 'companyapp:new-job' user.company.pk %}">Добавить вакансию</a>
+            </div>
+            
+            <div class="job-list">
+                <table class="job-list__table">
+                    <caption><h2>Вакансии:</h2></caption>
+                    <tr>
+                        <th class="narrow">№</th>
+                        <th class="wide">Описание</th>
+                        <th>Город</th>
+                        <th class="narrow">Просмотров</th>
+                        <th>Статус</th>
+                    </tr>
+                    {% for item in object_list.select_related %}
+                        <tr>
+                        <th class="narrow">{{ forloop.counter }}</th>
+                        <th class="wide"><a href="#">{{ item.short_description }}</a></th>
+                        <th>{{ item.city }}</th>
+                        <th class="narrow">{{item.views_count}}</th>
+                        {% if item.status == "0" %}
+                            <th>Отклонена модератором</th>
+                        {% elif item.status == "1" %}
+                            <th>Заготовка</th>
+                        {% elif item.status == "2" %}
+                            <th>На модерации</th>
+                        {% elif item.status == "3" %}
+                            <th>Опубликована</th>
+                        {% elif item.status == "4" %}
+                            <th>Черновик</th>
+                        {% elif item.status == "5" %}
+                            <th>Скрыта</th>
+                        {% elif item.status == "6" %}
+                            <th>Закрыта</th>
+                        {% elif item.status == "9" %}
+                            <th>Удалена</th>
+                        {% endif %}
+
+                    {% endfor %}
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% endblock %}
+
+{% endblock %}
